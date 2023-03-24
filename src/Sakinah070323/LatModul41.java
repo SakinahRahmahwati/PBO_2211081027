@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Latihan070323;
+package Sakinah070323;
 
 /**
  *
  * @author LABSIKOMP03
  */
-public class Latihan1 {
+public class LatModul41 {
     public static void main(String [] args){
         int number = 10;
         char letter = 'a';

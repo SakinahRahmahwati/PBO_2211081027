@@ -4,10 +4,16 @@
  */
 package Sakinah160323;
 
-/**
- *
- * @author HP-PC
- */
-public class ContohJOptionPane {
-    
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
+public class ContohJOptionPane
+{
+    public static void main(final String[] args) {
+        String name = "";
+        name = JOptionPane.showInputDialog("Please enter your name");
+        final String msg = "Hello " + name + "!";
+        JOptionPane.showMessageDialog(null, msg);
+    }
 }
+
