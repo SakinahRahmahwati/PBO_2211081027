@@ -21,6 +21,8 @@ public class AritmatikaExample {
         for (int i = 0; i < hasil.length; i++) {
             System.out.print(hasil[i] + " ");
         }
+        
+        
     }
 }
 
