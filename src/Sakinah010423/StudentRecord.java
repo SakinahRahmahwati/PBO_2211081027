@@ -8,6 +8,7 @@ public class StudentRecord {
     private double englishGrade;
     private double scienceGrade;
     private double average;
+    private char nilaiHuruf;
     
     private static int studentCount; //class variabel
     
@@ -71,7 +72,7 @@ public class StudentRecord {
     public void print( String temp ){
         System.out.println("Name:" + name);
         System.out.println("Address:" + address); 
-        System.out.println("Age:" + age);  
+        System.out.println("Age:" + age);     
     } 
 
     public void print(double eGrade, double mGrade, double sGrade){
@@ -104,6 +105,21 @@ public class StudentRecord {
         scienceGrade = sGrade; 
         studentCount++;
     } 
+    
+    //menampilkan nilai huruf
+    public char nilaiHuruf(){
+        if (getAverage() > 80)
+            nilaiHuruf = 'A';
+        else if(getAverage()> 65)
+            nilaiHuruf = 'B';
+        else if(getAverage()> 55)
+            nilaiHuruf = 'C';
+        else if(getAverage()> 45)
+            nilaiHuruf = 'D';
+        else if(getAverage()> 0)
+            nilaiHuruf = 'E';
+        return nilaiHuruf;
+    }
 }          
 
 
