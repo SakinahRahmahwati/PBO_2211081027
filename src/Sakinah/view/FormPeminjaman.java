@@ -18,7 +18,28 @@ public class FormPeminjaman extends javax.swing.JFrame {
         initComponents();
         controller = new PeminjamanController(this);
         controller.bersihForm();
+        controller.isiCombo();
         controller.tampilData();
+    }
+    
+    public javax.swing.JComboBox getCboAnggota(){
+        return cboAnggota;
+    }
+    
+    public javax.swing.JComboBox getCboBuku(){
+        return cboBuku;
+    }
+    
+    public javax.swing.JTextField getTxtTglPinjam(){
+        return txtTglPinjam;
+    }
+    
+    public javax.swing.JTextField getTxtTglKembali(){
+        return txtTglKembali;
+    }
+    
+    public javax.swing.JTable getTblPeminjaman(){
+        return tblPeminjaman;
     }
 
     /**
@@ -34,8 +55,6 @@ public class FormPeminjaman extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNobp = new javax.swing.JTextField();
-        txtKodeBuku = new javax.swing.JTextField();
         txtTglPinjam = new javax.swing.JTextField();
         txtTglKembali = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
@@ -44,6 +63,8 @@ public class FormPeminjaman extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPeminjaman = new javax.swing.JTable();
+        cboAnggota = new javax.swing.JComboBox<>();
+        cboBuku = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -63,14 +84,6 @@ public class FormPeminjaman extends javax.swing.JFrame {
         jLabel4.setText("Tgl kembali");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(18, 141, 61, 16);
-
-        txtNobp.setText("jTextField1");
-        getContentPane().add(txtNobp);
-        txtNobp.setBounds(80, 20, 220, 22);
-
-        txtKodeBuku.setText("jTextField2");
-        getContentPane().add(txtKodeBuku);
-        txtKodeBuku.setBounds(80, 60, 220, 22);
 
         txtTglPinjam.setText("jTextField3");
         getContentPane().add(txtTglPinjam);
@@ -143,25 +156,44 @@ public class FormPeminjaman extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblPeminjaman);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 230, 400, 210);
+        jScrollPane1.setBounds(20, 230, 460, 210);
+
+        cboAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cboAnggota);
+        cboAnggota.setBounds(80, 20, 220, 22);
+
+        cboBuku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cboBuku);
+        cboBuku.setBounds(80, 60, 220, 22);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        controller.deletePeminjaman();
+        controller.tampilData();
+        controller.bersihForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
+        controller.savePeminjaman();
+        controller.tampilData();
+        controller.bersihForm();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        controller.savePeminjaman();
+        controller.tampilData();
+        controller.bersihForm();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        controller.bersihForm();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tblPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeminjamanMouseClicked
@@ -208,14 +240,14 @@ public class FormPeminjaman extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cboAnggota;
+    private javax.swing.JComboBox<String> cboBuku;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPeminjaman;
-    private javax.swing.JTextField txtKodeBuku;
-    private javax.swing.JTextField txtNobp;
     private javax.swing.JTextField txtTglKembali;
     private javax.swing.JTextField txtTglPinjam;
     // End of variables declaration//GEN-END:variables

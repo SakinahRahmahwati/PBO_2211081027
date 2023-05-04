@@ -10,8 +10,15 @@ import java.util.List;
  *
  * @author HP-PC
  */
-public class PeminjamanDaoImpl implements PeminjamanDao {
+public class PeminjamanDaoImpl implements PeminjamanDao{
     List<Peminjaman> data = new ArrayList<>();
+    
+    public PeminjamanDaoImpl(){
+        data.add(new Peminjaman());
+        data.add(new Peminjaman());
+        data.add(new Peminjaman());
+        
+    }
     
     public void save(Peminjaman peminjaman){
         data.add(peminjaman);
