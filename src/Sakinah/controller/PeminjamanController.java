@@ -5,7 +5,7 @@
 package Sakinah.controller;
 import Sakinah.model.*;
 import java.util.*;
-import Sakinah.view.FormPeminjaman;
+import Sakinah.view.FormPeminjaman1;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,13 +13,14 @@ import javax.swing.table.DefaultTableModel;
  * @author HP-PC
  */
 public class PeminjamanController {
-    private FormPeminjaman formPeminjaman;
+    private FormPeminjaman1 formPeminjaman;
     private PeminjamanDao peminjamanDao;
     private Peminjaman peminjaman;
+
     private AnggotaDao anggotaDao;
     private BukuDao bukuDao;        
     
-    public PeminjamanController (FormPeminjaman formPeminjaman){
+    public PeminjamanController (FormPeminjaman1 formPeminjaman){
         this.formPeminjaman = formPeminjaman;
         peminjamanDao = new PeminjamanDaoImpl();
         anggotaDao = new AnggotaDaoImpl();
@@ -75,6 +76,7 @@ public class PeminjamanController {
         peminjaman.setTglPinjam(formPeminjaman.getTxtTglPinjam().getText());
         peminjaman.setTglKembali(formPeminjaman.getTxtTglKembali().getText());
         peminjamanDao.update(index, peminjaman);
+        javax.swing.JOptionPane.showMessageDialog(formPeminjaman, "Update");
     }
     
     public void deletePeminjaman(){
@@ -90,6 +92,7 @@ public class PeminjamanController {
         for(Peminjaman peminjaman : list){
             Object[] data = {
                 peminjaman.getAnggota().getNobp(),
+                peminjaman.getAnggota().getNama(),
                 peminjaman.getBuku().getKodeBuku(),
                 peminjaman.getTglPinjam(),
                 peminjaman.getTglKembali()
