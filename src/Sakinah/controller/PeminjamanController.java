@@ -5,7 +5,7 @@
 package Sakinah.controller;
 import Sakinah.model.*;
 import java.util.*;
-import Sakinah.view.FormPeminjaman1;
+import Sakinah.view.FormPeminjaman;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,14 +13,14 @@ import javax.swing.table.DefaultTableModel;
  * @author HP-PC
  */
 public class PeminjamanController {
-    private FormPeminjaman1 formPeminjaman;
+    private FormPeminjaman formPeminjaman;
     private PeminjamanDao peminjamanDao;
     private Peminjaman peminjaman;
 
     private AnggotaDao anggotaDao;
     private BukuDao bukuDao;        
     
-    public PeminjamanController (FormPeminjaman1 formPeminjaman){
+    public PeminjamanController (FormPeminjaman formPeminjaman){
         this.formPeminjaman = formPeminjaman;
         peminjamanDao = new PeminjamanDaoImpl();
         anggotaDao = new AnggotaDaoImpl();
