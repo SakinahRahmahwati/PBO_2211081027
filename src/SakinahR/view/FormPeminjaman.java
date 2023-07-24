@@ -19,14 +19,14 @@ public class FormPeminjaman extends javax.swing.JFrame {
     /**
      * Creates new form FormPeminjaman
      */
-    PeminjamanController cont;
+    PeminjamanController controller;
     public FormPeminjaman()  {
         initComponents();
-        cont = new PeminjamanController(this);
-        cont.bersihform();
-        cont.isiComboAnggota();
-        cont.isiComboBuku();
-        cont.tampil();
+        controller = new PeminjamanController(this);
+        controller.bersihform();
+        controller.isiComboAnggota();
+        controller.isiComboBuku();
+        controller.tampil();
     }
 
     public JComboBox<String> getCboKodeAnggota() {
@@ -93,6 +93,12 @@ public class FormPeminjaman extends javax.swing.JFrame {
         jLabel4.setText("Tanggal Kembali");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(10, 100, 120, 16);
+
+        txtTglPinjam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTglPinjamActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtTglPinjam);
         txtTglPinjam.setBounds(140, 70, 390, 22);
         getContentPane().add(txtTglKembali);
@@ -177,34 +183,39 @@ public class FormPeminjaman extends javax.swing.JFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
-        cont.insert();
-        cont.bersihform();
-        cont.tampil();
+        controller.insert();
+        controller.bersihform();
+        controller.tampil();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        cont.update();
-        cont.bersihform();
-        cont.tampil();
+        controller.update();
+        controller.bersihform();
+        controller.tampil();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        cont.delete();
-        cont.bersihform();
-        cont.tampil();
+        controller.delete();
+        controller.bersihform();
+        controller.tampil();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        cont.bersihform();
+        controller.bersihform();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tblPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeminjamanMouseClicked
         // TODO add your handling code here:
-        cont.getPeminjaman();
+        // TODO add your handling code here:
+        controller.getPeminjaman();
     }//GEN-LAST:event_tblPeminjamanMouseClicked
+
+    private void txtTglPinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTglPinjamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTglPinjamActionPerformed
 
     /**
      * @param args the command line arguments

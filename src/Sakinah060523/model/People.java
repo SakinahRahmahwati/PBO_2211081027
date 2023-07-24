@@ -22,28 +22,30 @@ public class People {
         this.alamat = alamat;
         this.statusNikah = statusNikah;
     }
-    
-    public String getNama(){
+
+    public String getNama() {
         return nama;
     }
-    
-    public void setNama(){
+
+    public void setNama(String nama) {
         this.nama = nama;
     }
-    
-    public String getAlamat(){
+
+    public String getAlamat() {
         return alamat;
     }
-    
-    public void setAlamat(){
+
+    public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-    
-    public String statusNikah(){
+
+    public String getStatusNikah() {
         return statusNikah;
     }
-    
-    public void setStatusNikah(){
+
+    public void setStatusNikah(String statusNikah) {
         this.statusNikah = statusNikah;
     }
+    
+    
 }

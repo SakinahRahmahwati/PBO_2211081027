@@ -9,62 +9,39 @@ package SakinahR.model;
  * @author HP-PC
  */
 public class Pengembalian {
-    private String kodeAnggota;
-    private String namaAnggota;
-    private String Kodebuku;
-    private String judulBuku;
+    private String kodeanggota;
+    private String kodebuku;
     private String tglpinjam;
-    private String tglkembali;
-    private String Dikembalikan;
+    private String tgldikembalikan;
     private int terlambat;
     private double denda;
-    
-    public Pengembalian(){
 
+    public Pengembalian() {
     }
 
-    public Pengembalian(Peminjaman p, String tgldikembalikan, int terlambat, double denda) {
-        this.kodeAnggota = kodeAnggota;
-        this.namaAnggota = namaAnggota;
-        this.Kodebuku = Kodebuku;
-        this.judulBuku = judulBuku;
+    public Pengembalian(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali, int terlambat, double denda) {
+        this.kodeanggota = kodeanggota;
+        this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
-        this.tglkembali = tglkembali;
-        this.Dikembalikan = Dikembalikan;
+        this.tgldikembalikan = tgldikembalikan;
         this.terlambat = terlambat;
-        this.denda = denda;;
+        this.denda = denda;
     }
 
-    public String getKodeAnggota() {
-        return kodeAnggota;
+    public String getKodeanggota() {
+        return kodeanggota;
     }
 
-    public void setKodeAnggota(String kodeAnggota) {
-        this.kodeAnggota = kodeAnggota;
-    }
-
-    public String getNamaAnggota() {
-        return namaAnggota;
-    }
-
-    public void setNamaAnggota(String namaAnggota) {
-        this.namaAnggota = namaAnggota;
+    public void setKodeanggota(String kodeanggota) {
+        this.kodeanggota = kodeanggota;
     }
 
     public String getKodebuku() {
-        return Kodebuku;
+        return kodebuku;
     }
 
-    public void setKodebuku(String Kodebuku) {
-        this.Kodebuku = Kodebuku;
-    }
-
-    public String getJudulBuku() {
-        return judulBuku;
-    }
-
-    public void setJudulBuku(String judulBuku) {
-        this.judulBuku = judulBuku;
+    public void setKodebuku(String kodebuku) {
+        this.kodebuku = kodebuku;
     }
 
     public String getTglpinjam() {
@@ -75,20 +52,12 @@ public class Pengembalian {
         this.tglpinjam = tglpinjam;
     }
 
-    public String getTglkembali() {
-        return tglkembali;
+    public String getTgldikembalikan() {
+        return tgldikembalikan;
     }
 
-    public void setTglkembali(String tglkembali) {
-        this.tglkembali = tglkembali;
-    }
-
-    public String getDikembalikan() {
-        return Dikembalikan;
-    }
-
-    public void setDikembalikan(String Dikembalikan) {
-        this.Dikembalikan = Dikembalikan;
+    public void setTgldikembalikan(String tgldikembalikan) {
+        this.tgldikembalikan = tgldikembalikan;
     }
 
     public int getTerlambat() {
@@ -106,6 +75,4 @@ public class Pengembalian {
     public void setDenda(double denda) {
         this.denda = denda;
     }
-
-    
 }

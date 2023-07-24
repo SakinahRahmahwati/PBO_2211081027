@@ -13,29 +13,33 @@ public class Karyawan extends People{
     private String golongan;
     private String jabatan;
     
-    public String getNip(){
-        return nip;  
-    }
-    
-    public String getGolongan(){
-        return golongan;   
-    }
-    
-    public String getJabatan(){
-        return jabatan;
-    }
-    
-    
-    public void setNip(){
+    public Karyawan(String nama, String alamat, String statusnikah, String nip, String golongan, String jabatan){
         this.nip = nip;
-    }
-    
-    public void setGolongan(){
         this.golongan = golongan;
-    }
-    
-    public void setJabatan(){
         this.jabatan = jabatan;
     }
-    
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public String getGolongan() {
+        return golongan;
+    }
+
+    public void setGolongan(String golongan) {
+        this.golongan = golongan;
+    }
+
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }  
 }

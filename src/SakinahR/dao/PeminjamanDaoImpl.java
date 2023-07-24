@@ -4,25 +4,31 @@
  */
 package SakinahR.dao;
 
-import SakinahR.model.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import SakinahR.model.Anggota;
+import SakinahR.model.Buku;
+import SakinahR.model.Peminjaman;
 
 /**
  *
  * @author HP-PC
  */
 public class PeminjamanDaoImpl implements PeminjamanDao {
-    private Connection connection;
+    Connection connection;
     
     public PeminjamanDaoImpl(Connection connection){
         this.connection = connection; 
     }
     
+    @Override
     public void insert (Peminjaman peminjaman)throws Exception{
-        String sql = "INSERT INTO Peminjaman VALUES(?,?,?,?)";
-        PreparedStatement ps = connection.prepareCall(sql);
+        String sql = "insert into peminjaman values(?,?,?,?)";
+        PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, peminjaman.getAnggota().getKodeanggota());
         ps.setString(2, peminjaman.getBuku().getKodeBuku());
         ps.setString(3, peminjaman.getTglpinjam());
@@ -31,9 +37,10 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         ps.close();
     }
     
+    @Override
     public void update (Peminjaman peminjaman) throws Exception{
-        String sql = "UPDATE Peminjaman SET tglkembali = ? "
-                +"WHERE kodeanggota = ? AND kodebuku = ? AND tglpinjam = ?";
+        String sql = "UPDATE peminjaman SET tglkembali=? "
+                +"WHERE kodeanggota=? AND kodebuku=? AND tglpinjam=";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, peminjaman.getTglkembali());
         ps.setString(2, peminjaman.getAnggota().getKodeanggota());
@@ -42,17 +49,20 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         ps.executeUpdate();
     }
     
+    @Override
     public void delete (Peminjaman peminjaman) throws Exception{
-        String sql = "DELETE FROM Peminjaman WHERE kodeanggota = ? AND kodebuku = ? AND tglpinjam = ?";
+        String sql = "DELETE FROM Peminjaman WHERE kodeanggota=? AND kodebuku=? AND tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, peminjaman.getAnggota().getKodeanggota());
         ps.setString(2, peminjaman.getBuku().getKodeBuku());
         ps.setString(3, peminjaman.getTglpinjam());
         ps.executeUpdate();
+        ps.close();
     }
     
+    @Override
     public Peminjaman getPeminjaman (String kodeanggota, String kodebuku, String tglpinjam) throws Exception{
-        String sql = "SELECT * FROM Peminjaman" 
+        String sql = "SELECT * FROM peminjaman " 
                 + "WHERE kodeanggota=? AND kodebuku=? AND tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, kodeanggota);
