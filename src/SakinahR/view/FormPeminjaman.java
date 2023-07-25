@@ -23,7 +23,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
     public FormPeminjaman()  {
         initComponents();
         controller = new PeminjamanController(this);
-        controller.bersihform();
+        controller.clearForm();
         controller.isiComboAnggota();
         controller.isiComboBuku();
         controller.tampil();
@@ -142,17 +142,17 @@ public class FormPeminjaman extends javax.swing.JFrame {
 
         tblPeminjaman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Anggota", "Kode Buku", "Tanggal Pinjam", "Tanggal Kembali"
+                "Kode Anggota", "Nama Anggota", "Kode Buku", "Judul Buku", "Tanggal Pinjam", "Tanggal Kembali"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -184,27 +184,27 @@ public class FormPeminjaman extends javax.swing.JFrame {
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
         controller.insert();
-        controller.bersihform();
+        controller.clearForm();
         controller.tampil();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         controller.update();
-        controller.bersihform();
+        controller.clearForm();
         controller.tampil();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         controller.delete();
-        controller.bersihform();
+        controller.clearForm();
         controller.tampil();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        controller.bersihform();
+        controller.clearForm();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tblPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeminjamanMouseClicked
@@ -221,7 +221,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+       /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -249,7 +249,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
             public void run() {
                 new FormPeminjaman().setVisible(true);
             }
-        });
+        }); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

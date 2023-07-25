@@ -109,29 +109,28 @@ public class FormPengembalian extends javax.swing.JFrame {
 
         jLabel1.setText("Kode Anggota");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 80, 16);
+        jLabel1.setBounds(20, 20, 100, 16);
 
         jLabel2.setText("Kode Buku");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 50, 57, 16);
+        jLabel2.setBounds(20, 50, 100, 16);
 
         jLabel3.setText("Tgl Pinjam");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 80, 56, 16);
+        jLabel3.setBounds(20, 80, 100, 16);
 
         jLabel4.setText("Tgl Kembali");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 110, 62, 16);
+        jLabel4.setBounds(20, 110, 100, 16);
 
         jLabel5.setText("Terlambat");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 140, 53, 16);
+        jLabel5.setBounds(20, 140, 100, 16);
 
         jLabel6.setText("Denda");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 170, 34, 16);
+        jLabel6.setBounds(20, 170, 100, 16);
 
-        txtTglPinjam.setText("jTextField3");
         txtTglPinjam.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTglPinjamFocusGained(evt);
@@ -143,7 +142,6 @@ public class FormPengembalian extends javax.swing.JFrame {
         getContentPane().add(txtTglPinjam);
         txtTglPinjam.setBounds(130, 80, 250, 22);
 
-        txtTglKembali.setText("jTextField4");
         txtTglKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTglKembaliActionPerformed(evt);
@@ -156,12 +154,8 @@ public class FormPengembalian extends javax.swing.JFrame {
         });
         getContentPane().add(txtTglKembali);
         txtTglKembali.setBounds(130, 110, 250, 22);
-
-        txtTerlambat.setText("jTextField5");
         getContentPane().add(txtTerlambat);
         txtTerlambat.setBounds(130, 140, 250, 22);
-
-        txtDenda.setText("jTextField6");
         getContentPane().add(txtDenda);
         txtDenda.setBounds(130, 170, 250, 22);
 
@@ -219,6 +213,7 @@ public class FormPengembalian extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPengembalian.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblPengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPengembalianMouseClicked(evt);
@@ -229,7 +224,6 @@ public class FormPengembalian extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(400, 60, 830, 350);
 
-        txtCari.setText("jTextField1");
         txtCari.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCariFocusGained(evt);
@@ -268,7 +262,8 @@ public class FormPengembalian extends javax.swing.JFrame {
         getContentPane().add(btnKembalikan);
         btnKembalikan.setBounds(400, 420, 100, 30);
 
-        pack();
+        setSize(new java.awt.Dimension(1266, 667));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPilihActionPerformed
@@ -336,7 +331,7 @@ public class FormPengembalian extends javax.swing.JFrame {
 
     private void tblPengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPengembalianMouseClicked
         // TODO add your handling code here:
-        con.get();
+        con.getPengembalian();
     }//GEN-LAST:event_tblPengembalianMouseClicked
 
     private void txtTglPinjamFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTglPinjamFocusGained

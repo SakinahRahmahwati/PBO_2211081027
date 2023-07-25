@@ -25,7 +25,7 @@ public class PengembalianController {
    FormPengembalian view;
    AnggotaDao Adao;
    BukuDao Bdao;
-   PengembalianDao pengembalianDao;
+   PengembalianDao kembaliDao;
    Pengembalian kembali;
    Connection con;
    PeminjamanDao pinjamDao;
@@ -34,7 +34,7 @@ public class PengembalianController {
         this.view = view;
         try {
             con = DbHelper.getConnection();
-            pengembalianDao = new PengembalianDaoImpl(con);
+            kembaliDao = new PengembalianDaoImpl(con);
             pinjamDao = new PeminjamanDaoImpl(con);
             Adao = new AnggotaDaoImpl(con);
             Bdao = new BukuDaoImpl(con);
@@ -44,10 +44,29 @@ public class PengembalianController {
     }
     
     public void bersih(){
-        view.getTxtDenda().setText("");
-        view.getTxtTerlambat().setText("");
-        view.getTxtTglKembali().setText("");
-        view.getTxtTglPinjam().setText("");
+       try {
+           view.getTxtDenda().setText("");
+           view.getTxtTerlambat().setText("");
+           view.getTxtTglKembali().setText("");
+           view.getTxtTglPinjam().setText("");
+           List<Buku> bukuD = Bdao.getAll();
+           List<Anggota> aggD = Adao.getAll();
+           view.getTxtDenda().setText("");
+           view.getCboKodeAnggota().removeAllItems();
+           view.getCboKodeBuku().removeAllItems();
+           view.getTxtTglKembali().setText("");
+           view.getTxtTerlambat().setText("");
+           view.getTxtCari().setText("");
+           view.getTxtTglPinjam().setText("");
+           for (Anggota agg : aggD) {
+               view.getCboKodeAnggota().addItem(agg.getKodeanggota());
+           }
+           for (Buku buku : bukuD) {
+               view.getCboKodeBuku().addItem(buku.getKodeBuku());
+           }
+       } catch (Exception ex) {
+           Logger.getLogger(PengembalianController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     public void isiComboAnggota(){
@@ -85,7 +104,7 @@ public class PengembalianController {
             kembali.setTgldikembalikan(view.getTxtTglKembali().getText());
             kembali.setTerlambat(Integer.parseInt(view.getTxtTerlambat().getText()));
             kembali.setDenda(Double.parseDouble(view.getTxtDenda().getText()));
-            pengembalianDao.insert(kembali);
+            kembaliDao.insert(kembali);
             JOptionPane.showMessageDialog(view, "Berhasil Kembalikan Buku.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(view, "Tidak bisa melakukan pengembalian!", null, 0);
@@ -100,7 +119,7 @@ public class PengembalianController {
             kembali.setTgldikembalikan(view.getTxtTglKembali().getText());
             kembali.setTerlambat(Integer.parseInt(view.getTxtTerlambat().getText()));
             kembali.setDenda(Double.parseDouble(view.getTxtDenda().getText()));
-            pengembalianDao.insert(kembali);
+            kembaliDao.insert(kembali);
             JOptionPane.showMessageDialog(view, "Berhasil Update Buku.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(view, "Tidak bisa melakukan pengembalian!", null, 0);
@@ -115,7 +134,7 @@ public class PengembalianController {
                     .toString());
             kembali.setTglpinjam(view.getTblPengembalian().getValueAt(view.getTblPengembalian().getSelectedRow(), 4)
                     .toString());
-            pengembalianDao.delete(kembali);
+            kembaliDao.delete(kembali);
             JOptionPane.showMessageDialog(view, "Data pengembalian dihapus!", null, 2);
         } catch (Exception ex) {
             // TODO: handle exception
@@ -141,7 +160,7 @@ public class PengembalianController {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String tglDikembalikan = format.format(new java.util.Date());
             view.getTxtTglKembali().setText(tglDikembalikan);
-            int terlambat = pengembalianDao.selisihtgl(tglDikembalikan, tglkembali);
+            int terlambat = kembaliDao.selisihtgl(tglDikembalikan, tglkembali);
             kembali.setTerlambat(terlambat);
             view.getTxtTerlambat().setText("" + terlambat);
             view.getTxtDenda().setText((String.valueOf(kembali.getDenda())));
@@ -155,7 +174,7 @@ public class PengembalianController {
            DefaultTableModel tabelModel =
                    (DefaultTableModel) view.getTblPengembalian().getModel();
            tabelModel.setRowCount(0);
-           List<Pengembalian> list = pengembalianDao.getAll();
+           List<Pengembalian> list = kembaliDao.getAll();
            for(Pengembalian p : list){
                Anggota anggota = Adao.getAnggota(p.getKodeanggota());
                Buku buku = Bdao.getBuku(p.getKodebuku());
@@ -193,7 +212,7 @@ public void Cari() {
             }else{
                 kode = "anggota.namaAnggota";
             }
-            List<Pengembalian> List = pengembalianDao.cari(kode, cari);
+            List<Pengembalian> List = kembaliDao.cari(kode, cari);
             if (List.isEmpty()) {
                 if(kode == "anggota.kodeAnnggota"){
                 JOptionPane.showMessageDialog(view, "Kode Anggota '" + cari + "' Tidak dapat ditemukan"); 
@@ -225,7 +244,7 @@ public void Cari() {
         String tglDikembalikan = view.getTxtTglKembali().getText();
         String Tglkembali = view.getTblPengembalian().getValueAt(view.getTblPengembalian().getSelectedRow(), 5)
                 .toString();
-        int terlambat = pengembalianDao.selisihtgl(tglDikembalikan, Tglkembali);
+        int terlambat = kembaliDao.selisihtgl(tglDikembalikan, Tglkembali);
         if(terlambat <= 0){
             terlambat = 0;
         }
@@ -233,5 +252,19 @@ public void Cari() {
         view.getTxtTglKembali().setText(tglDikembalikan);
         view.getTxtDenda().setText((String.valueOf(terlambat * 2000)));
         return terlambat;
+    }
+     public void Ubah() {
+        try {
+            kembali.setKodeanggota(view.getCboKodeAnggota().getSelectedItem().toString());
+            kembali.setKodebuku(view.getCboKodeBuku().getSelectedItem().toString());
+            kembali.setTglpinjam(view.getTxtTglPinjam().getText());
+            kembali.setTgldikembalikan(view.getTxtTglKembali().getText());
+            kembali.setTerlambat(Integer.parseInt(view.getTxtTerlambat().getText()));
+            kembali.setDenda(Double.parseDouble(view.getTxtDenda().getText()));
+            kembaliDao.update(kembali);
+            JOptionPane.showMessageDialog(view, "Data Pengembalian telah dirubah!", null, 2);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }

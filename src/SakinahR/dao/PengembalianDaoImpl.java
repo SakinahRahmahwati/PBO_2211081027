@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.Result;
 
 
 /**
@@ -36,7 +38,6 @@ public class PengembalianDaoImpl implements PengembalianDao{
         ps.setInt(5, pengembalian.getTerlambat());
         ps.setDouble(6, pengembalian.getDenda());
         ps.executeUpdate();
-        ps.close();
     }
     
     public void update (Pengembalian pengembalian) throws Exception {
@@ -59,7 +60,6 @@ public class PengembalianDaoImpl implements PengembalianDao{
         ps.setString(2, pengembalian.getKodebuku());
         ps.setString(3, pengembalian.getTglpinjam());
         ps.executeUpdate();
-        ps.close();
     }
     
     public Pengembalian getPengembalian(String kodeanggota, String kodebuku, String tglpinjam) throws Exception{
@@ -121,10 +121,41 @@ public class PengembalianDaoImpl implements PengembalianDao{
         }
         return selisih;
     }
+    
+    public List<Pengembalian> cari(String kode, String cari) throws Exception {
+        String search = "SELECT anggota.kodeAnggota, anggota.namaAnggota, buku.kodeBuku, buku.judulBuku, peminjaman.tglpinjam, peminjaman.tglkembali, pengembalian.TglDikembalikan, pengembalian.terlambat, pengembalian.denda FROM peminjaman JOIN anggota ON peminjaman.kodeAnggota = anggota.kodeAnggota JOIN buku ON peminjaman.kodeBuku = buku.kodeBuku LEFT JOIN pengembalian ON (peminjaman.kodeAnggota = pengembalian.KodeAnggota AND peminjaman.kodeBuku = pengembalian.kodeBuku AND CAST(peminjaman.tglpinjam AS DATE) = CAST(pengembalian.tglpinjam AS DATE)) WHERE "+kode+" LIKE '%"+cari+"%'";
+        PreparedStatement ps = connection.prepareStatement(search);
+        // ps.setString(1, kode);
+        // ps.setString(2, cari);
+        ResultSet rs = ps.executeQuery();
+        List<Pengembalian> data = new ArrayList<>();
+        while (rs.next()) {
+            pengembalian = new Pengembalian();
+            pengembalian.setKodeanggota(rs.getString(1));
+            pengembalian.setNamaanggota(rs.getString(2));
+            pengembalian.setKodebuku(rs.getString(3));
+            pengembalian.setJudulbuku(rs.getString(4));
+            pengembalian.setTglpinjam(rs.getString(5));
+            pengembalian.setTgldikembalikan(rs.getString(7));
+            pengembalian.setTerlambat(rs.getInt(8));
+            pengembalian.setDenda(rs.getDouble(9));
+            data.add(pengembalian);
+        }
+        return data;
+    }
+
+    @Override
+    public void cari(Pengembalian pengembalian) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     @Override
     public int selisihtgl(String tgl1, String tgl2) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+  
+
+    
 }
 

@@ -4,6 +4,9 @@
  */
 package Sakinah060523.view;
 
+import java.awt.event.ActionEvent;
+import Sakinah060523.controller.KaryawanController;
+
 /**
  *
  * @author HP-PC
@@ -13,6 +16,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     /**
      * Creates new form FormKaryawan
      */
+    KaryawanController controller;
     public FormKaryawan() {
         initComponents();
     }

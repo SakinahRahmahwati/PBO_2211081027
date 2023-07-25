@@ -19,4 +19,5 @@ public interface PengembalianDao {
     Pengembalian getPengembalian(String kodeanggota, String kodebuku, String tglpinjam) throws Exception;
     List<Pengembalian>getAll() throws Exception;
     int selisihtgl(String tgl1, String tgl2) throws Exception;
+    List<Pengembalian> cari(String kode, String cari) throws Exception;
 }
